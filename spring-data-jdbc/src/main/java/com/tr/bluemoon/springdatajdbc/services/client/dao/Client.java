@@ -5,15 +5,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("client")
-public class ClientEntity {
+public class Client {
 
     @Id
     private Integer id;
     private String name;
 
-    public ClientEntity() {}
+    public Client() {}
 
-    public ClientEntity(String name) {
+    public Client(String name) {
         this.name = name;
     }
         
@@ -35,7 +35,7 @@ public class ClientEntity {
 
     @Override
     public String toString() {
-        return "ClientEntity [id=" + id + ", name=" + name + "]";
+        return "Client [id=" + id + ", name=" + name + "]";
     }
     
 }

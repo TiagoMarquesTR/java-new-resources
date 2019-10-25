@@ -1,6 +1,10 @@
-package com.tr.bluemoon.springdatajdbc.services.client.dao;
+package com.tr.bluemoon.springdatajdbc.services;
 
 import javax.sql.DataSource;
+
+import com.tr.bluemoon.springdatajdbc.services.client.dao.ClientConverter;
+import com.tr.bluemoon.springdatajdbc.services.client.dao.ClientDao;
+import com.tr.bluemoon.springdatajdbc.services.client.dao.ClientRepository;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

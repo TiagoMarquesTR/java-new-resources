@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tr.bluemoon.springdatajdbc.services.client.ClientService;
 import com.tr.bluemoon.springdatajdbc.dto.ClientDto;
-import com.tr.bluemoon.springdatajdbc.dto.ClientForm;
 
 @RestController
 @RequestMapping("/client")
@@ -33,17 +33,23 @@ public class ClientController {
         return clients;
     }
 
+    @GetMapping("/{name}")
+    public List<ClientDto> getById(@PathVariable String name) {
+        List<ClientDto> clients = clientService.getByName(name);
+        return clients;
+    }
+
     @PostMapping
     @Transactional
-    public ResponseEntity<String> add(@RequestBody @Valid ClientForm form, UriComponentsBuilder uriBuilder) {
-        clientService.save(form);
+    public ResponseEntity<String> add(@RequestBody @Valid ClientDto clientDto, UriComponentsBuilder uriBuilder) {
+        clientService.save(clientDto);
 
         return ResponseEntity.ok("OK");
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity<String> add(@RequestBody @Valid ClientDto form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<String> update(@RequestBody @Valid ClientDto form, UriComponentsBuilder uriBuilder) {
         clientService.update(form);
 
         return ResponseEntity.ok("OK");

@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.tr.bluemoon.springdatajdbc.services.client.dao.ClientDao;
 import com.tr.bluemoon.springdatajdbc.dto.ClientDto;
-import com.tr.bluemoon.springdatajdbc.dto.ClientForm;
 
 @Component
 public class ClientService {
@@ -21,8 +20,13 @@ public class ClientService {
 		return clients;
 	}
 
-	public void save(ClientForm clientForm) {
-		clientDAO.save(clientForm);
+	public List<ClientDto> getByName(String name) {
+		List<ClientDto> clients = clientDAO.getByName(name);
+		return clients;
+	}
+
+	public void save(ClientDto clientDto) {
+		clientDAO.save(clientDto);
 	}
 
 	public void update(ClientDto clientDto) {

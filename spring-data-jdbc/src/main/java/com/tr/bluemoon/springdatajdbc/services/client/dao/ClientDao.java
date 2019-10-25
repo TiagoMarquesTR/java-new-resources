@@ -4,8 +4,6 @@ package com.tr.bluemoon.springdatajdbc.services.client.dao;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.tr.bluemoon.springdatajdbc.dto.ClientDto;
-import com.tr.bluemoon.springdatajdbc.dto.ClientForm;
-
 
 public class ClientDao {
 
@@ -24,8 +22,15 @@ public class ClientDao {
 
 	}
 
-	public void save(ClientForm clientForm) {
-		clientRepository.save(clientConverter.convertTo(clientForm));
+	public List<ClientDto> getByName(String name) {		
+		return clientRepository.findByName(name).stream()
+				.map(entity -> clientConverter.convertTo(entity))
+				.collect(Collectors.toList());
+
+	}
+
+	public void save(ClientDto clientDto) {
+		clientRepository.save(clientConverter.convertTo(clientDto));
 	}
 
 	public void update(ClientDto updatedClientModel) {
