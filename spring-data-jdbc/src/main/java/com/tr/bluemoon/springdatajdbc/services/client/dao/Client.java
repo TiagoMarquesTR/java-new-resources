@@ -10,13 +10,15 @@ public class Client {
     @Id
     private Integer id;
     private String name;
+    
+    public Client() {
+    }
 
-    public Client() {}
-
-    public Client(String name) {
+    public Client(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
-        
+
     public Integer getId() {
         return id;
     }
@@ -35,7 +37,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client [id=" + id + ", name=" + name + "]";
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
-    
 }
