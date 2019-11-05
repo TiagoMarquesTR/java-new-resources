@@ -3,7 +3,6 @@ package com.tr.bluemoon.springdatajdbc.services.dependent.dao;
 
 import com.tr.bluemoon.springdatajdbc.services.client.dao.Client;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("dependent")
@@ -11,18 +10,21 @@ public class Dependent {
 
     @Id
     private Integer id;
-    //TODO: Spring Data JDBC don't work well with FK.
-    @Column("id")
-    private Client client;
     private String name;
+    private Client client;
 
     public Dependent() {
     }
 
-    public Dependent(Integer id, Client client, String name) {
+    public Dependent(Integer id, String name) {
         this.id = id;
-        this.client = client;
         this.name = name;
+    }
+
+    public Dependent(Integer id, String name, Client client) {
+        this.id = id;
+        this.name = name;
+        this.client = client;
     }
 
     public Integer getId() {
@@ -33,6 +35,14 @@ public class Dependent {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -41,11 +51,12 @@ public class Dependent {
         this.client = client;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String toString() {
+        return "Dependent{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", client=" + client +
+                '}';
     }
 }

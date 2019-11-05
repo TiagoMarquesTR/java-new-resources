@@ -1,4 +1,6 @@
 package com.tr.bluemoon.springdatajdbc.services.author;
 
-public class AuthorRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface AuthorRepository extends CrudRepository<Author, Long> {
 }

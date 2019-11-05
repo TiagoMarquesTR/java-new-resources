@@ -1,4 +1,4 @@
-
+/*
 package com.tr.bluemoon.springdatajdbc.services.dependent.dao;
 
 import java.util.List;
@@ -38,4 +38,4 @@ public class DependentDao {
         dependentRepository.save(updatDependent);
     }
 
-}
+}*/

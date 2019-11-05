@@ -1,3 +1,4 @@
+/*
 
 package com.tr.bluemoon.springdatajdbc.controller;
 
@@ -54,4 +55,4 @@ public class ClientController {
 
         return ResponseEntity.ok("OK");
     } 
-}
+}*/

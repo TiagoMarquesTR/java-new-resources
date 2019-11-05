@@ -1,3 +1,4 @@
+/*
 
 package com.tr.bluemoon.springdatajdbc.services.client;
 
@@ -33,4 +34,4 @@ public class ClientService {
 		clientDAO.update(client);
 	}
 
-}
+}*/
