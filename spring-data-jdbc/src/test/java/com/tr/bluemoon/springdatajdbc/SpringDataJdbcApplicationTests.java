@@ -1,13 +1,17 @@
 package com.tr.bluemoon.springdatajdbc;
 
-import com.tr.bluemoon.springdatajdbc.services.author.Author;
-import com.tr.bluemoon.springdatajdbc.services.author.AuthorRepository;
-import com.tr.bluemoon.springdatajdbc.services.book.Book;
-import com.tr.bluemoon.springdatajdbc.services.book.BookRepository;
+import com.tr.bluemoon.springdatajdbc.services.car.Car;
+import com.tr.bluemoon.springdatajdbc.services.car.CarRepository;
+import com.tr.bluemoon.springdatajdbc.services.engine.Engine;
+import com.tr.bluemoon.springdatajdbc.services.engine.EngineRepository;
 import com.tr.bluemoon.springdatajdbc.services.movie.MovieRepository;
+import com.tr.bluemoon.springdatajdbc.services.truck.Truck;
+import com.tr.bluemoon.springdatajdbc.services.truck.TruckRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Optional;
 
 @SpringBootTest
 class SpringDataJdbcApplicationTests {
@@ -15,39 +19,46 @@ class SpringDataJdbcApplicationTests {
     @Autowired
     private MovieRepository movieRepository;
 
-    /*@Autowired
-    private ClientRepository clientRepository;*/
-	/*@Autowired
-	private DependentRepository dependentRepository;
-	*/@Autowired
-	private AuthorRepository authorRepository;
-	@Autowired
-	private BookRepository bookRepository;
+    @Autowired
+    private CarRepository carRepository;
+
+    @Autowired
+    private TruckRepository truckRepository;
+
+    @Autowired
+    private EngineRepository engineRepository;
+
     @Test
     public void contextLoads() {
 
-        /*Movie movie = new Movie(null, "Lord of the Rings", "...",
-                new Rental(null, Duration.ofDays(1), 5));
+        Optional<Engine> engine = engineRepository.findById(2L);
 
-        movieRepository.save(movie);
+        if (engine.isPresent()) {
+            System.out.println(engine.get());
+        } else {
+            Engine newEngine = new Engine(null, "2.0");
+        }
 
-        System.out.println(movieRepository.findAll());*/
-//		Client client = new Client(null, "Fulano");
+        Optional<Car> car = carRepository.findById(6L);
 
-		/*clientRepository.save(client);
+        if (car.isPresent()) {
+            System.out.println(car.get().getEngine().getName());
+        } else {
+            Car newCar = new Car(null, "Azera", new Engine(3L, "3.3"));
 
-		System.out.println(client);*/
-		Author author = new Author();
-		author.setName("Yosef");
+            carRepository.save(newCar);
+        }
 
-		authorRepository.save(author);
+        Optional<Truck> truck = truckRepository.findById(1L);
 
-		Book book = new Book();
-		book.setTitle("Kardunner");
-		book.setIsbn("123");
-		book.addAuthor(author);
+        if (truck.isPresent()) {
+            System.out.println(truck);
+        } else {
+            Truck newTruck = new Truck(null, "Volvo", new Engine(2L, "4.0"));
+            truckRepository.save(newTruck);
+        }
 
-		bookRepository.save(book);
+
     }
 
 }
