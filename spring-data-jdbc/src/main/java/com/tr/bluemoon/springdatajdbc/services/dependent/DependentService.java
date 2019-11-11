@@ -1,37 +1,43 @@
-/*
-
 package com.tr.bluemoon.springdatajdbc.services.dependent;
 
-import com.tr.bluemoon.springdatajdbc.services.dependent.dao.Dependent;
-import com.tr.bluemoon.springdatajdbc.services.dependent.dao.DependentDao;
+import com.tr.bluemoon.springdatajdbc.services.client.Client;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class DependentService {
 
     @Autowired
-    private DependentDao dependentDao;
+    private DependentRepository dependentRepository;
 
     public List<Dependent> getAll() {
-        List<Dependent> dependents = dependentDao.getAll();
-        return dependents;
+        return dependentRepository.findAll();
     }
 
     public Optional<Dependent> getById(Integer id) {
-        Optional<Dependent> dependent = dependentDao.getById(id);
-        return dependent;
+        return dependentRepository.findById(id);
     }
 
+    public Optional<Client> getClient(Integer id) {
+        return dependentRepository.findClientById(id);
+    }
     public void save(Dependent dependent) {
-        dependentDao.save(dependent);
+        dependentRepository.save(dependent);
     }
 
     public void update(Dependent dependent) {
-        dependentDao.update(dependent);
+        if (dependent.getId() == null) {
+            return;
+        }
+
+        if (!dependentRepository.existsById(dependent.getId())) {
+            return;
+        }
+
+        dependentRepository.save(dependent);
     }
 
-}*/
+}

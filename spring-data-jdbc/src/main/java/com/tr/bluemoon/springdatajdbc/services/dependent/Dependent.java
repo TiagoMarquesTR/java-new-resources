@@ -1,7 +1,6 @@
 
-package com.tr.bluemoon.springdatajdbc.services.dependent.dao;
+package com.tr.bluemoon.springdatajdbc.services.dependent;
 
-import com.tr.bluemoon.springdatajdbc.services.client.dao.Client;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -10,21 +9,17 @@ public class Dependent {
 
     @Id
     private Integer id;
+    private Integer client;
     private String name;
-    private Client client;
 
     public Dependent() {
+
     }
 
-    public Dependent(Integer id, String name) {
+    public Dependent(Integer id, Integer client, String name) {
         this.id = id;
-        this.name = name;
-    }
-
-    public Dependent(Integer id, String name, Client client) {
-        this.id = id;
-        this.name = name;
         this.client = client;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -43,11 +38,11 @@ public class Dependent {
         this.name = name;
     }
 
-    public Client getClient() {
+    public Integer getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(Integer client) {
         this.client = client;
     }
 

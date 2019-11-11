@@ -1,12 +1,10 @@
-/*
-
 package com.tr.bluemoon.springdatajdbc.controller;
 
 import java.util.List;
 
 import javax.validation.Valid;
 
-import com.tr.bluemoon.springdatajdbc.services.client.dao.Client;
+import com.tr.bluemoon.springdatajdbc.services.client.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,4 +53,4 @@ public class ClientController {
 
         return ResponseEntity.ok("OK");
     } 
-}*/
+}

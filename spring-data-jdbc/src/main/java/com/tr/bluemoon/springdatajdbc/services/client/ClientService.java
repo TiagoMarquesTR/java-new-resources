@@ -1,37 +1,39 @@
-/*
-
 package com.tr.bluemoon.springdatajdbc.services.client;
 
-import com.tr.bluemoon.springdatajdbc.services.client.dao.Client;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.tr.bluemoon.springdatajdbc.services.client.dao.ClientDao;
-
-@Component
+@Service
 public class ClientService {
 
 	@Autowired
-	private ClientDao clientDAO;
+	private ClientRepository clientRepository;
 
 	public List<Client> getAll() {
-		List<Client> clients = clientDAO.getAll();
-		return clients;
+		return clientRepository.findAll();
 	}
 
 	public List<Client> getByName(String name) {
-		List<Client> clients = clientDAO.getByName(name);
-		return clients;
+		return clientRepository.findByName(name).stream().collect(Collectors.toList());
 	}
 
 	public void save(Client client) {
-		clientDAO.save(client);
+		clientRepository.save(client);
 	}
 
 	public void update(Client client) {
-		clientDAO.update(client);
+		if(client.getId() == null) {
+			return;
+		}
+
+		if(!clientRepository.existsById(client.getId())) {
+			return;
+		}
+
+		clientRepository.save(client);
 	}
 
-}*/
+}

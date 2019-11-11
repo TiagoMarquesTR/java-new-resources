@@ -38,14 +38,4 @@ public class DaoModule extends AbstractJdbcConfiguration {
         return driver;
 	}
 
-/*	@Bean
-	public ClientDao clientDAO(ClientRepository clientRepository) {
-		return new ClientDao(clientRepository);
-	}
-
-	@Bean
-	public DependentDao dependentDAO(DependentRepository dependentRepository) {
-		return new DependentDao(dependentRepository);
-	}
-*/
 }

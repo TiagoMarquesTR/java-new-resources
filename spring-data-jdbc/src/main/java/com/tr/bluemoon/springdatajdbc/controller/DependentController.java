@@ -1,9 +1,10 @@
-/*
+
 
 package com.tr.bluemoon.springdatajdbc.controller;
 
+import com.tr.bluemoon.springdatajdbc.services.client.Client;
 import com.tr.bluemoon.springdatajdbc.services.dependent.DependentService;
-import com.tr.bluemoon.springdatajdbc.services.dependent.dao.Dependent;
+import com.tr.bluemoon.springdatajdbc.services.dependent.Dependent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,12 @@ public class DependentController {
         return dependents;
     }
 
+    @GetMapping("/client/{id}")
+    public Optional<Client> getClientById(@PathVariable Integer id) {
+        Optional<Client> dependent = dependentService.getClient(id);
+        return dependent;
+    }
+
     @PostMapping
     @Transactional
     public ResponseEntity<String> add(@RequestBody @Valid Dependent dependent, UriComponentsBuilder uriBuilder) {
@@ -48,4 +55,4 @@ public class DependentController {
 
         return ResponseEntity.ok("OK");
     }
-}*/
+}

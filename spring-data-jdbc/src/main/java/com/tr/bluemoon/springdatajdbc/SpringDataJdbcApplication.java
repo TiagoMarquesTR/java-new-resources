@@ -10,4 +10,11 @@ public class SpringDataJdbcApplication {
 		SpringApplication.run(SpringDataJdbcApplication.class, args);
 	}
 
+	/*@Bean
+	ApplicationRunner applicationRunner(DependentRepository dependentRepository) {
+		return args -> {
+			Dependent dependent1 = Dependent.create("Ts", 1);
+		}
+	}*/
+
 }
